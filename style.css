@@ -1,5 +1,5 @@
 body{
-    background: #000;
+    background: #fff;
 }
 .m-wrap{
     width: 400px;
@@ -38,7 +38,7 @@ body{
 }
 
 .btn-copy-list.disable{
-    background: #82abba;
+    background: #a2b4ba;
     cursor: default;
 }
 .btn-del-item{
@@ -78,7 +78,7 @@ body{
     flex-grow: 1;
     width: 1%;
     height: 26px;
-    border: 1px solid #82abba;
+    border: 1px solid #a2b4ba;
     display: block;
     color: #373e40;
     padding: 0 5px;
