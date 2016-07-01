@@ -1,0 +1,86 @@
+body{
+    background: #000;
+}
+.m-wrap{
+    width: 400px;
+    height: 400px;
+    padding: 10px;
+    background: #fff;
+    box-sizing: border-box;
+    position: relative;
+}
+.top-method{
+    height: 40px;
+}
+
+.btn-custom{
+    height: 40px;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    background: #00b0f0;
+    cursor: pointer;
+}
+
+.btn-get-all-ml{
+    width: 130px;
+    float: right;
+}
+
+.btn-copy-list{
+    position: absolute;
+    width: 100px;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+.btn-copy-list.disable{
+    background: #82abba;
+    cursor: default;
+}
+.btn-del-item{
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #f44336;
+    margin: 1px 0 0 20px;
+    position: relative;
+    cursor: pointer;
+}
+.btn-del-item::before{
+    content: "";
+    width: 14px;
+    height: 2px;
+    position: absolute;
+    background: #fff;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.link-list{
+    margin: 25px 0 0;
+    height: 260px;
+}
+.link-list .title{
+    color: #373e40;
+}
+.link-list .link-item{
+    margin: 10px 0 0;
+    height: 28px;
+    display: flex;
+}
+.link-list .link-item .link-input{
+    flex-grow: 1;
+    width: 1%;
+    height: 26px;
+    border: 1px solid #82abba;
+    display: block;
+    color: #373e40;
+    padding: 0 5px;
+}
+
