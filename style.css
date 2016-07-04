@@ -65,9 +65,11 @@ body{
 .link-list{
     margin: 25px 0 0;
     height: 260px;
+    overflow-y: scroll;
 }
 .link-list .title{
     color: #373e40;
+    font-size: 16px;
 }
 .link-list .link-item{
     margin: 10px 0 0;

@@ -1,32 +1,120 @@
 
-function getCurrentTabUrl(callback) {
+var links = [],
+    pageLinkText = '',
+    copyType = 0; //0:列表, 1:页面所有
 
-    var queryInfo = {
-        active: true,
-        currentWindow: true
-    };
+function deleteItemHandler (e) {
 
-    chrome.tabs.query(queryInfo, function(tabs) {
+    if(e.target.className == 'btn-del-item'){
 
-        var tab = tabs[0];
+        var target = e.target,
+            index = target.getAttribute('data-index'),
+            ddNode = target.parentNode;
 
-        var url = tab.url;
+        ddNode.parentNode.removeChild(ddNode);
 
-        console.assert(typeof url == 'string', 'tab.url should be a string');
+        links.splice(index, 1);
 
-        callback(url);
+        if(links.length == 0){
 
-    });
+            document.querySelector('.btn-copy-list').className += ' disable';
+
+        }
+
+        window.localStorage.dlinkCopy = JSON.stringify(links);
+
+    }
 
 }
 
-function addToList(link) {
+function copyListHandler (e) {
 
+    if(e.target.className.indexOf('disable') > -1){
+
+        return false;
+
+    }
+
+    copyType = 0;
+    document.execCommand("copy");
+}
+
+function copyHandler (e) {
+
+    e.preventDefault();
+
+    var clipboardData = e.clipboardData;
+
+    if(copyType == 0) {
+        clipboardData.setData('Text', links.join('\n'));
+    } else if(copyType == 1){
+
+        console.log(pageLinkText);
+
+        clipboardData.setData('Text', pageLinkText);
+
+    }
+
+    //清除Data
+    window.localStorage.dlinkCopy = '';
+    links = [];
+    document.querySelector('.btn-copy-list').className += ' disable';
+
+}
+
+function copyAllHandler (e) {
+    copyType = 1;
+
+    chrome.runtime.sendMessage({
+
+        'name': 'getPageLinks'
+
+    }, function(response){
+
+        pageLinkText = response;
+        
+        document.execCommand("copy");
+
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    getCurrentTabUrl(function(url) {
+    var htmlText = '',
+        tpl = '<dd class="link-item" data-index="{1}"><input type="input" class="link-input" value="{0}"><span class="btn-del-item"></span></dd>';
 
+    var copyListBtn = document.querySelector('.btn-copy-list'),
+        copyAllBtn = document.querySelector('.btn-get-all-ml');
+
+    window.localStorage.dlinkCopy && (links = JSON.parse(window.localStorage.dlinkCopy));
+
+    links.forEach(function ( link, index ) {
+        
+        htmlText += tpl.replace('{0}', link).replace('{1}', index);
+        
     });
+
+    document.querySelector('.link-list').innerHTML += htmlText;
+
+    if(links.length != 0){
+
+        copyListBtn.className = copyListBtn.className.replace('disable', '').trim();
+
+    }
+
+    document.body.addEventListener('click', deleteItemHandler);
+    copyListBtn.addEventListener('click', copyListHandler);
+    copyAllBtn.addEventListener('click', copyAllHandler);
+    document.body.addEventListener('copy', copyHandler);
+
 });
+
+
+
+
+
+
+
+
+
+
