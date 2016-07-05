@@ -106,25 +106,22 @@
     };
 
     //事件函数
-    var handlers = {
+    var addToListHandler = function (e) {
 
-        addToList: function (e) {
+        e.stopPropagation();
 
-            e.stopPropagation();
+        if( $(this).hasClass('hasAdded') ){
 
-            if( $(this).hasClass('hasAdded') ){
+            return false;
 
-                return false;
+        } else {
 
-            } else {
+            setAddedStyle($(this));
 
-                setAddedStyle($(this));
-
-                saveToLs($(this).attr('data-link'));
-
-            }
+            saveToLs($(this).attr('data-link'));
 
         }
+
     };
 
     var init = function () {
@@ -143,19 +140,15 @@
 
         });
 
-        console.log(pageLinks);
-
+        //同步整个页面的链接
         chrome.runtime.sendMessage({
-
             'name': 'putPageLinks',
             'data': pageLinks
-
         }, function(response){
-            console.log(pageLinks);
             console.log(response);
         });
 
-        $('body').on('click', '.dLink-add-to-list', handlers.addToList);
+        $('body').on('click', '.dLink-add-to-list', addToListHandler);
 
     };
 

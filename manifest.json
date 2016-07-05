@@ -12,8 +12,12 @@
 
   "content_scripts": [
     {
-      "matches": ["*://www.btwalk.com/*"],
-      "js": ["js/jquery.js", "js/findOut.js"]
+      "matches": [
+        "*://www.btwalk.com/*",
+        "*://btso.pw/*",
+        "*://www.btsearchs.com/*"
+      ],
+      "js": ["js/jquery.js", "js/content.js"]
     }
   ],
   "background": {
