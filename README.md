@@ -21,4 +21,8 @@
 ## TodoList
 * 搜寻详情页,提取磁力链接,不需要进入详情页就可以复制链接
 * 适用网站的配置文件(如果不做成可配置的,第一点的功能浪费网页加载时间)
+
+## License
+
+[MIT](https://opensource.org/licenses/MIT)
                                      
