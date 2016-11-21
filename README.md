@@ -5,12 +5,20 @@
 我做这个最初的想法是可以在列表页就可以把要下载的链接添加到一个待复制的列表,之后再
 一起复制到剪切板,然后复制到网盘中.
                                      
-# 功能
+## 功能
 * 探测页面中的磁力链接,增加添加按钮
 * 管理待复制链接
 * 复制页面全部磁力链接
-                                     
-# TodoList
+  
+## 截图
+![dLinkCopy](http://ogzdtxeq0.bkt.clouddn.com/dLinkCopy/pic1.jpg)
+![dLinkCopy](http://ogzdtxeq0.bkt.clouddn.com/dLinkCopy/pic2.jpg)
+![dLinkCopy](http://ogzdtxeq0.bkt.clouddn.com/dLinkCopy/pic3.jpg)
+
+## 使用方法
+.....
+
+## TodoList
 * 搜寻详情页,提取磁力链接,不需要进入详情页就可以复制链接
 * 适用网站的配置文件(如果不做成可配置的,第一点的功能浪费网页加载时间)
                                      
