@@ -4,6 +4,8 @@
     var pageLinks = [],
         mLinks = [];
 
+    var isChanged = false;
+
     //判断一个链接是不是磁力链接
     var isMagnet = function (link) {
 
@@ -58,12 +60,18 @@
     //增加标记;
     var addTag = function (dom, link) {
 
-        var span = document.createElement('span');
-        span.className = 'dLink-add-to-list';
-        span.style = 'color:red;cursor: pointer;';
-        span.innerHTML = '添加到列表';
-        span.setAttribute('data-link', link);
-        dom.appendChild(span);
+        //判断是不是有dom存在
+        if(dom.querySelector('.dLink-add-to-list')){
+          return false;
+        } else {
+          var span = document.createElement('span');
+          span.className = 'dLink-add-to-list';
+          span.style = 'color:red;cursor: pointer;';
+          span.innerHTML = '添加到列表';
+          span.setAttribute('data-link', link);
+          dom.appendChild(span);
+        }
+
 
     };
 
@@ -154,7 +162,17 @@
 
     init();
 
+    document.body.addEventListener('DOMNodeInserted', function (e){
 
+      if(!isChanged){
+        isChanged = true;
+        setTimeout(function () {
+          init();
+          isChanged = false;
+        }, 1000);
+      }
+
+    });
 
 })();
 
